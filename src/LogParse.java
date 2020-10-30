@@ -30,7 +30,7 @@ public class LogParse {
         while(s.hasNextLine()) {
             String line = s.nextLine();
             String line_substr = "";
-//            try {
+            try {
                 if(line.substring(6, 18).equals("Done Loading")) {
                     String newMap = line.substring(line.indexOf(']') + 2, line.lastIndexOf('[') - 1);
                     if(!newMap.equals(currentMap)) {
@@ -47,9 +47,9 @@ public class LogParse {
                     String killInfoLine = s.nextLine();
                     System.out.println(killerSide + " killed " + victimSide + ": \n" + killInfoLine);
                 }
-//            } catch (Exception e) {
-//
-//            }
+            } catch (Exception e) {
+
+            }
         }
     }
 
