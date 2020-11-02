@@ -6,12 +6,10 @@ class MatchLog {
     }
 
     override fun toString(): String {
-        var sb = StringBuilder();
-        sb.append("Match:\n")
-        for((round, index) in rounds.withIndex()) {
-//            sb.append("Round ").append(index).append(":\n").append(round.toString())
-            sb.append("Round $index:\n${round.toString()}")
+        var ret = "Match: "
+        for((index, round) in rounds.withIndex()) {
+            ret += "\nRound $index:\n$round"
         }
-        return sb.toString()
+        return ret
     }
 }

@@ -25,14 +25,11 @@ class RoundLog(val tileset: Tileset, val map: String) {
     }
 
     public override fun toString(): String {
-        val sb = StringBuilder();
-//        sb.append("tileset: ").append(tileset).append("\nmap: ").append(map).append("\n")
-        sb.append("tileset: $tileset\nmap:$map\n")
-        for((kill, index) in kills.withIndex()) {
-//            sb.append("kill ").append(index).append(":\n").append(kill.toString())
-            sb.append("kill $index:\n${kill.toString()}")
+        var ret = "map: $map ($tileset)"
+        for((index, kill) in kills.withIndex()) {
+            ret += "\nkill $index: $kill"
         }
-        return sb.toString()
+        return ret
     }
 
     public enum class Tileset {
