@@ -7,7 +7,7 @@ object LogParse {
     @JvmStatic
     fun main(args: Array<String>) {
         try {
-            println(Arrays.toString(args))
+//            println(Arrays.toString(args)
             val s: Scanner
             s = if (args.size == 0) {
                 Scanner(File("Player.log"))
@@ -35,21 +35,21 @@ object LogParse {
         while (s.hasNextLine()) {
             val line = s.nextLine()
             try {
-                if (line.substring(6, 18) == "Done Loading") {
+                if (line.contains("Done Loading Game Level")) {
                     val newMap = line.substring(line.indexOf(']') + 2, line.lastIndexOf('[') - 1)
                     if (newMap != currentRound.map) {
-                        println("round change!")
+//                        println("round change!")
                         val tileset = line.substring(line.indexOf('[') + 1, line.indexOf(']'))
                         currentRound = RoundLog(tileset, newMap)
                         match.addRound(currentRound)
-                        println("new tileset: $tileset\nnew map: $newMap")
+//                        println("new tileset: $tileset\nnew map: $newMap")
                     }
                 }
                 if (line.substring(0, 6) == "Killer") {
                     val killerSide = line.substring(line.indexOf(':') + 2, line.indexOf(','))
                     val victimSide = line.substring(line.lastIndexOf(':') + 2)
                     var killInfoLine = s.nextLine()
-                    println("$killerSide killed $victimSide")
+//                    println("$killerSide killed $victimSide")
 
                     killInfoLine = killInfoLine.replace(Regex("<[^<||^>]*>"), "<>");
 //                    var killInfoList = ("<$killInfoLine").split("((?<=<)|(?=>))".toRegex())
@@ -64,13 +64,13 @@ object LogParse {
                     val killLog = KillLog(if(killerName!=null) killerName else "unknown", killerSide,
                             if(victimName!=null) victimName else "unknown", victimSide)
                     currentRound.addKill(killLog)
-                    println(killLog)
+//                    println(killLog)
 //                    TODO()
 //                    currentRound.addKill(KillLog())
                 }
             } catch (e: Exception) {
             }
         }
-//        println(match)
+        println(match)
     }
 }

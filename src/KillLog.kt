@@ -18,6 +18,13 @@ class KillLog(var killerName: String, var killerTeam: Team, var victimName: Stri
             }
     )
 
+    fun equals(other: KillLog): Boolean {
+        return this.killerName.equals(other.killerName) &&
+                this.killerTeam == other.killerTeam &&
+                this.victimName.equals(other.victimName) &&
+                this.victimTeam == other.victimTeam
+    }
+
     override fun toString(): String {
         return "$killerName ($killerTeam)  killed $victimName ($victimTeam)"
     }
